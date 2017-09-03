@@ -29,7 +29,14 @@ class Post(models.Model):
         verbose_name = verbose_name_plural = "文章"
 
 
+class TestManager(models.Manager):
+    def get_queryset(self):
+        return super(TestManager, self).get_queryset().filter(status=1)
+
+
 class Category(models.Model):
+    objects = TestManager()
+
     STATUS_ITEMS = (
         (1, '可用'),
         (2, '删除'),
