@@ -16,7 +16,10 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 
+from .custom_site import custom_site
+
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^cus_admin/', custom_site.urls),
 ]
