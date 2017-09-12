@@ -22,6 +22,10 @@ class Post(models.Model):
 
     created_time = models.DateTimeField(auto_now_add=True, verbose_name="创建时间")
 
+    def status_show(self):
+        return '当前状态:%s' % self.status
+    status_show.short_description = '展示状态'
+
     def __unicode__(self):
         return self.title
 
