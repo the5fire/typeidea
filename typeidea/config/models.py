@@ -36,6 +36,7 @@ class SideBar(models.Model):
         (4, '最近评论'),
     )
     title = models.CharField(max_length=50, verbose_name="标题")
+    status = models.PositiveIntegerField(default=1, choices=STATUS_ITEMS, verbose_name="状态")
     display_type = models.PositiveIntegerField(default=1, choices=SIDE_TYPE,
                                                verbose_name="展示类型")
     content = models.CharField(max_length=500, blank=True, verbose_name="内容",
