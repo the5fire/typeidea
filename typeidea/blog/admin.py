@@ -24,11 +24,9 @@ class PostAdmin(BaseOwnerAdmin):
     list_filter = ['category', ]
     search_fields = ['title', 'category__name']
     save_on_top = True
-    show_full_result_count = True
 
     actions_on_top = True
     actions_on_bottom = True
-    date_hierarchy = 'created_time'
 
     # 编辑页面
     save_on_top = True
@@ -37,6 +35,7 @@ class PostAdmin(BaseOwnerAdmin):
         ('category', 'title'),
         'desc',
         'status',
+        'content',
         'tags',
     )
 
@@ -51,8 +50,15 @@ class PostAdmin(BaseOwnerAdmin):
 @admin.register(Category, site=custom_site)
 class CategoryAdmin(BaseOwnerAdmin):
     list_display = ('name', 'status', 'is_nav', 'created_time')
+    fields = (
+        'name', 'status',
+        'is_nav',
+    )
 
 
 @admin.register(Tag, site=custom_site)
 class TagAdmin(BaseOwnerAdmin):
     list_display = ('name', 'status', 'created_time')
+    fields = (
+        'name', 'status'
+    )
