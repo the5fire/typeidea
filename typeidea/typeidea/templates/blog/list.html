@@ -1,0 +1,8 @@
+<h1>list</h1>
+<ul>
+{% for post in posts %}
+    title: <a href="{% url 'detail' post.id %}">{{ post.title }} </a><br/>
+    desc: {{ post.desc }}
+    <hr/>
+{% endfor %}
+</ul>
