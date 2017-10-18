@@ -1,9 +1,6 @@
-<h1>list</h1>
-<ul>
-    {% for cate in nav_cates %}
-    <li><a href="{% url 'category' cate.id %}">{{ cate.name }}</a></li>
-    {% endfor %}
-</ul>
+{% extends "./base.html" %}
+
+{% block content %}
 <ul>
     <hr/>
 
@@ -21,11 +18,4 @@
         Empty!!
     {% endif %}
 </ul>
-
-<hr/>
-
-<ul>
-    {% for cate in cates %}
-    <li><a href="{% url 'category' cate.id %}">{{ cate.name }}</a></li>
-    {% endfor %}
-</ul>
+{% endblock %}
