@@ -5,7 +5,8 @@ from django.core.paginator import Paginator, EmptyPage
 from django.http import Http404
 from django.shortcuts import render
 
-from .models import Post, Tag
+from .models import Post, Tag, Category
+from config.models import SideBar
 
 
 def post_list(request, category_id=None, tag_id=None):
@@ -28,14 +29,27 @@ def post_list(request, category_id=None, tag_id=None):
             queryset = []
         else:
             queryset = tag.posts.all()
+
     paginator = Paginator(queryset, page_size)
     try:
         posts = paginator.page(page)
     except EmptyPage:
         posts = paginator.page(paginator.num_pages)
 
+    categories = Category.objects.filter(status=1)  # TODO: fix magic number
+
+    nav_cates = []
+    cates = []
+    for cate in categories:
+        if cate.is_nav:
+            nav_cates.append(cate)
+        else:
+            cates.append(cate)
+
     context = {
         'posts': posts,
+        'nav_cates': nav_cates,
+        'cates': cates,
     }
     return render(request, 'blog/list.html', context=context)
 

@@ -1,12 +1,31 @@
 <h1>list</h1>
 <ul>
-{% for post in posts %}
-<li>
-    title: <a href="{% url 'detail' post.id %}">{{ post.title }} </a><br/>
-    desc: {{ post.desc }}
-</li>
-{% endfor %}
-{% if posts.has_previous %}<a href="?page={{ posts.number|add:"-1" }}">上一页</a>{% endif %}
-Page {{ posts.number }} of {{ posts.paginator.num_pages }}.
-{% if posts.has_next %}<a href="?page={{ posts.number|add:"1" }}">下一页</a>{% endif %}
+    {% for cate in nav_cates %}
+    <li><a href="{% url 'category' cate.id %}">{{ cate.name }}</a></li>
+    {% endfor %}
+</ul>
+<ul>
+    <hr/>
+
+    {% if posts %}
+        {% for post in posts %}
+        <li>
+            title: <a href="{% url 'detail' post.id %}">{{ post.title }} </a><br/>
+            desc: {{ post.desc }}
+        </li>
+        {% endfor %}
+        {% if posts.has_previous %}<a href="?page={{ posts.number|add:"-1" }}">上一页</a>{% endif %}
+        Page {{ posts.number }} of {{ posts.paginator.num_pages }}.
+        {% if posts.has_next %}<a href="?page={{ posts.number|add:"1" }}">下一页</a>{% endif %}
+    {% else %}
+        Empty!!
+    {% endif %}
+</ul>
+
+<hr/>
+
+<ul>
+    {% for cate in cates %}
+    <li><a href="{% url 'category' cate.id %}">{{ cate.name }}</a></li>
+    {% endfor %}
 </ul>
