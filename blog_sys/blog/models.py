@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-fr, 'classes': ['collapse']om __future__ import unicode_literals
+from __future__ import unicode_literals
 
 from django.db import models
 
@@ -29,6 +29,9 @@ class Post(models.Model):
         (),
         ]
     '''
+#    def show_status(self):
+#        return '当前状态:%s' % self.status
+
     def __unicode__(self):
         return self.title
 
@@ -43,16 +46,18 @@ class Category(models.Model):
     )
     name = models.CharField(max_length=50, verbose_name='名称')
     status = models.PositiveIntegerField(default=1, choices=STATUS_ITEMS, verbose_name='状态')
-    is_nav = models.BooleanField(default=False, verbose_name='是否未导航')
+    is_nav = models.BooleanField(default=False, verbose_name='是否为导航')
     owner = models.ForeignKey(User, verbose_name='作者')
     created_time = models.DateTimeField(auto_now_add=True, verbose_name='创建时间')
 
-    def __str__(self):
+    def __unicode__(self):
         return self.name
 
     class Meta:
         verbose_name = verbose_name_plural = '分类'
 #        ordering = ('id', 'created_time')
+
+
 class Tag(models.Model):
     STATUS_ITEMS = (
         (1, '正常'),

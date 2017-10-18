@@ -9,7 +9,7 @@ class CustomSite(AdminSite):
     index_title = '首页'
 
 
-custom_site = CustomSite(name='cus_site')
+custom_site = CustomSite(name='cus_admin')
 '''
 custom_site.register(PostAdmin)
 '''
