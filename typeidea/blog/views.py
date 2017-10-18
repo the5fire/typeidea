@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+from django.core.paginator import Paginator, EmptyPage
 from django.http import Http404
 from django.shortcuts import render
 
@@ -8,6 +9,13 @@ from .models import Post, Tag
 
 
 def post_list(request, category_id=None, tag_id=None):
+    page = request.GET.get('page', 1)
+    page_size = 4
+    try:
+        page = int(page)
+    except TypeError:
+        page = 1
+
     queryset = Post.objects.all()
     if category_id:
         # 分类页面
@@ -20,9 +28,14 @@ def post_list(request, category_id=None, tag_id=None):
             queryset = []
         else:
             queryset = tag.posts.all()
+    paginator = Paginator(queryset, page_size)
+    try:
+        posts = paginator.page(page)
+    except EmptyPage:
+        posts = paginator.page(paginator.num_pages)
 
     context = {
-        'posts': queryset,
+        'posts': posts,
     }
     return render(request, 'blog/list.html', context=context)
 
