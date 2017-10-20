@@ -15,7 +15,7 @@ class Post(models.Model):
     )
 
     title = models.CharField(max_length=50, null=True, blank=True, verbose_name='标题')
-    describe = models.CharField(max_length=1024, blank=True, verbose_name='摘要')
+    describe = models.CharField(max_length=128, blank=True, verbose_name='摘要')
     content = models.TextField(verbose_name='正文', help_text='正文必须未markdown格式')
     status = models.PositiveIntegerField(default=1, choices=STATUS_ITEMS, verbose_name='状态')
     category = models.ForeignKey('Category', verbose_name='分类')

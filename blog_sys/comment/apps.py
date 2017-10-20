@@ -5,4 +5,4 @@ from django.apps import AppConfig
 
 
 class ReviewsConfig(AppConfig):
-    name = 'reviews'
+    name = '评论系统'
