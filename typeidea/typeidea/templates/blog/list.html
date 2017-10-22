@@ -11,9 +11,9 @@
             desc: {{ post.desc }}
         </li>
         {% endfor %}
-        {% if posts.has_previous %}<a href="?page={{ posts.number|add:"-1" }}">上一页</a>{% endif %}
-        Page {{ posts.number }} of {{ posts.paginator.num_pages }}.
-        {% if posts.has_next %}<a href="?page={{ posts.number|add:"1" }}">下一页</a>{% endif %}
+        {% if page_obj.has_previous %}<a href="?page={{ page_obj.previous_page_number }}">上一页</a>{% endif %}
+        Page {{ page_obj.number }} of {{ paginator.num_pages }}.
+        {% if page_obj.has_next %}<a href="?page={{ page_obj.next_page_number }}">下一页</a>{% endif %}
     {% else %}
         Empty!!
     {% endif %}
