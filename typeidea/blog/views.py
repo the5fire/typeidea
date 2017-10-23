@@ -9,7 +9,7 @@ from comment.models import Comment
 
 
 class CommonMixin(object):
-    def get_context_data(self):
+    def get_category_context(self):
         categories = Category.objects.filter(status=1)  # TODO: fix magic number
 
         nav_cates = []
@@ -19,20 +19,23 @@ class CommonMixin(object):
                 nav_cates.append(cate)
             else:
                 cates.append(cate)
+        return {
+            'nav_cates': nav_cates,
+            'cates': cates,
+        }
 
+    def get_context_data(self, **kwargs):
         side_bars = SideBar.objects.filter(status=1)
-
         recently_posts = Post.objects.filter(status=1)[:10]
         # hot_posts = Post.objects.filte(status=1).order_by('views')[:10]
         recently_comments = Comment.objects.filter(status=1)[:10]
-        extra_context = {
-            'nav_cates': nav_cates,
-            'cates': cates,
+        kwargs.update({
             'side_bars': side_bars,
             'recently_comments': recently_comments,
             'recently_posts': recently_posts,
-        }
-        return super(CommonMixin, self).get_context_data(**extra_context)
+        })
+        kwargs.update(self.get_category_context())
+        return super(CommonMixin, self).get_context_data(**kwargs)
 
 
 class BasePostsView(CommonMixin, ListView):
@@ -40,6 +43,7 @@ class BasePostsView(CommonMixin, ListView):
     template_name = 'blog/list.html'
     context_object_name = 'posts'
     paginate_by = 3
+    allow_empty = True
 
 
 class IndexView(BasePostsView):
