@@ -14,7 +14,7 @@ class Post(models.Model):
     title = models.CharField(max_length=50, verbose_name="标题")
     desc = models.CharField(max_length=255, blank=True, verbose_name="摘要")
     category = models.ForeignKey('Category', verbose_name="分类")
-    tags = models.ManyToManyField('Tag', verbose_name="标签")
+    tags = models.ManyToManyField('Tag', related_name="posts", verbose_name="标签")
 
     content = models.TextField(verbose_name="内容", help_text="注：目前仅支持Markdown格式数据")
     status = models.IntegerField(default=1, choices=STATUS_ITEMS, verbose_name="状态")
