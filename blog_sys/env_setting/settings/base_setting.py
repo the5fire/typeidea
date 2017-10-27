@@ -34,7 +34,8 @@ INSTALLED_APPS = [
     'blog',
     'comment',
     'config',
-#    'practice',
+    'practice',
+    'env_setting',
 
     'django.contrib.admin',
     'django.contrib.auth',

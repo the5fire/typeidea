@@ -1,0 +1,36 @@
+<h1>post list</h1>
+
+<ul>
+    {% for post in POST %}
+    title: <a href="{% url 'detail' post.id %}">{{ post.title }}</a>
+    <br>
+    describe: {{ post.content }}
+    <br>
+    owner: {{ post.owner }}
+    <hr>
+    {% endfor %}
+    <hr>
+    <div class="pagination">
+
+    <span class="previous_page">
+    {% if POST.has_previous %}
+        <a href="?page={{ POST.previous_page_number }}"><上一页</a>
+    {% endif %}
+    </span>
+
+    <span class="page_list">
+    {% for page_number in POST.paginator.page_range %}
+        {% if page_number == POST.number %}
+            {{ page_number }}
+        {% else %}
+            <a href="?page={{ page_number }}">{{ page_number }}</a>
+        {% endif %}
+    {% endfor %}
+
+    <span class="next_page">
+    {% if POST.has_next %}
+    <a href="?page={{ POST.next_page_number }}">下一页></a>
+    {% endif %}
+    </span>
+</div>
+</ul>
