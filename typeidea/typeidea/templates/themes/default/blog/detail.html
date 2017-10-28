@@ -1,0 +1,32 @@
+{% extends "./base.html" %}
+
+{% block content %}
+
+<nav aria-label="breadcrumb" role="navigation">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">首页</a></li>
+        <li class="breadcrumb-item"><a href="{% url 'category' post.category.id %}">{{ post.category.name }}</a></li>
+        <li class="breadcrumb-item active" aria-current="page">正文</li>
+    </ol>
+</nav>
+
+<div class="post-element">
+    <h3 class="post-element-title">
+        {{ post.title }}
+    </h3>
+    <div>
+        <nav class="nav">
+            分类:<a class="nav-link post-element-nav" href="{% url 'category' post.category_id %}">{{ post.category.name }}</a>
+            标签:
+            <a class="nav-link post-element-nav" href="#">
+                {% for tag in post.tags.all %} {{ tag.name }}{% endfor %}
+            </a>
+            作者:<a class="nav-link post-element-nav" href="#">{{ post.owner.username }}</a>
+            创建时间:<a class="nav-link post-element-nav" href="#">{{ post.created_time }}</a>
+        </nav>
+    </div>
+    <article class="content">
+        {{ post.content }}
+    </article>
+</div>
+{% endblock %}

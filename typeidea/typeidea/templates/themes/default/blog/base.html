@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Typeidea blog - by the5fire</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
+    <style>
+    .banner {
+        margin-top: 40px;
+    }
+    nav.category a {
+        margin-top: 20px;
+        margin-right: 20px;
+    }
+    .post-element-nav  {
+        padding-top: 0;
+        padding-bottom: 0;
+        color: #428bca;
+    }
+    .post-element-title {
+        font-size: 25px;
+        border-bottom: 1px solid #ccc;
+    }
+    .post-element-title a {
+        color: #333;
+    }
+    .post-element-desc {
+        padding: 1rem;
+    }
+    .main {
+        margin-top: 25px;
+    }
+    .main ul {
+        padding-left: 0px;
+    }
+    .post-element article {
+        margin-top: 10px;
+    }
+    .power {
+        margin-top: 30px;
+    }
+    .sidebar li {
+        list-style: none;
+    }
+    .sidebar a {
+        color: #444;
+    }
+    </style>
+  </head>
+  <body>
+	<div class="container banner">
+		<h3>
+            typeidea blog - by the5fire
+		  <small class="text-muted"> - 基于Django的多人博客系统</small>
+		</h3>
+	</div>
+	<div class="container">
+        <nav class="nav category" style="border-bottom: 1px solid #ccc; padding-bottom: 3px;">
+            <a href="/">首页</a>
+            {% for cate in nav_cates %}
+            <a href="{% url 'category' cate.id %}">{{ cate.name }}</a>
+            {% endfor %}
+        </nav>
+	</div>
+	<div class="container main">
+        <div class="row">
+            <div class="col-9">
+                {% block content %}
+                {% endblock %}
+            </div>
+            <div class="col-3">
+                {% for side in side_bars %}
+                <div class="container sidebar">
+                    <h4>{{ side.title }}</h4>
+                    <div>
+                        {% if side.display_type == 1 %}
+                            {% autoescape off %}
+                            {{ side.content }}
+                            {% endautoescape %}
+                        {% elif side.display_type == 2 %}
+                        <ul>
+                        {% for post in recently_posts %}
+                        <li><a href="{% url 'detail' post.id %}">{{ post.title }}</a></li>
+                        {% endfor %}
+                        </ul>
+                        {% elif side.display_type == 4 %}
+                        <ul>
+                            {% for comment in recently_comments %}
+                                <li>{{ comment.content }}</li>
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <hr/>
+            <nav class="nav category">
+                {% for cate in cates %}
+                <a href="{% url 'category' cate.id %}">{{ cate.name }}</a>
+                {% endfor %}
+            </nav>
+        </div>
+        <div class="container power">
+            <span class="text-muted">Power by Typeidea@the5fire</span>
+        </div>
+    </footer>
