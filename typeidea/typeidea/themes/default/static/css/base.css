@@ -1,0 +1,89 @@
+body {
+    background-color: #dbe2e9;
+}
+.fixed-top {
+    position: fixed;
+    right: 0;
+    left: 0;
+    border-width: 0 0 1px;
+}
+header {
+    height: 50px;
+    background-color: #3d4450;
+    border-color: #080808;
+    line-height: 50px;
+}
+header nav a {
+    color: #fff;
+    padding: 0 1.5rem;
+}
+header nav a:hover {
+    color: #fff;
+    text-decoration:none;
+    background-color: #000;
+}
+header a.logo {
+    font-size: 1.5rem;
+    padding-left: 0;
+}
+header a.logo:hover {
+    background-color: #3d4450;
+}
+
+/* 主体部分 */
+.main .left-side .inner {
+    background-color: #fff;
+    padding: 30px 10px;
+}
+.main .right-side .inner{
+    background-color: #fff;
+}
+nav.category a {
+    margin-top: 20px;
+    margin-right: 20px;
+}
+.post-element-nav  {
+    padding-top: 0;
+    padding-bottom: 0;
+    color: #428bca;
+}
+.post-element-title {
+    font-size: 25px;
+}
+.post-element-title a {
+    color: #333;
+    text-decoration:none;
+    border-bottom: 1px solid #ccc;
+}
+.post-element-desc {
+    padding: 1rem;
+}
+.main {
+    margin-top: 100px;
+}
+.main ul {
+    padding-left: 0px;
+}
+.post-element article {
+    margin-top: 10px;
+}
+.power {
+    margin-top: 30px;
+}
+.sidebar li {
+    list-style: none;
+}
+.sidebar a {
+    color: #444;
+}
+.sidebar-title {
+    height: 30px;
+    background-color: #3d4450;
+    border-color: #080808;
+    line-height: 30px;
+    color: #fff;
+    padding: 0 9px;
+}
+.sidebar-content {
+    padding: 0 9px;
+}
