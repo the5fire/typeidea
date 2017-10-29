@@ -1,6 +1,7 @@
 body {
     background-color: #dbe2e9;
 }
+/* 顶部栏 */
 .fixed-top {
     position: fixed;
     right: 0;
@@ -28,6 +29,9 @@ header a.logo {
 }
 header a.logo:hover {
     background-color: #3d4450;
+}
+header .search {
+    margin-top: 5px;
 }
 
 /* 主体部分 */
