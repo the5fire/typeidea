@@ -1,7 +1,6 @@
 {% extends "./base.html" %}
 
 {% block content %}
-<ul>
     {% if posts %}
         {% for post in posts %}
 			<div class="post-element">
@@ -31,5 +30,4 @@
     {% else %}
         Empty!!
     {% endif %}
-</ul>
 {% endblock %}

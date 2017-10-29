@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from django.conf import settings
 from django.views.generic import ListView, DetailView
 
 from .models import Post, Tag, Category
@@ -41,7 +40,7 @@ class CommonMixin(object):
 
 class BasePostsView(CommonMixin, ListView):
     model = Post
-    template_name = settings.THEME + '/blog/list.html'
+    template_name = 'blog/list.html'
     context_object_name = 'posts'
     paginate_by = 3
     allow_empty = True
@@ -73,5 +72,5 @@ class TagView(BasePostsView):
 
 class PostView(CommonMixin, DetailView):
     model = Post
-    template_name = settings.THEME + '/blog/detail.html'
+    template_name = 'blog/detail.html'
     context_object_name = 'post'

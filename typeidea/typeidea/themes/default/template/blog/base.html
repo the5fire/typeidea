@@ -6,8 +6,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
     <style>
-    .banner {
-        margin-top: 40px;
+    body {
+        background-color: #dbe2e9;
+    }
+    .fixed-top {
+        position: fixed;
+        right: 0;
+        left: 0;
+        border-width: 0 0 1px;
+    }
+    header {
+        height: 50px;
+        background-color: #3d4450;
+        border-color: #080808;
+        line-height: 50px;
+    }
+    header nav a {
+        color: #fff;
+        padding: 0 1.5rem;
+    }
+    header nav a:hover {
+        color: #fff;
+        text-decoration:none;
+        background-color: #000;
+    }
+    header a.logo {
+        font-size: 1.5rem;
+        padding-left: 0;
+    }
+    header a.logo:hover {
+        background-color: #3d4450;
+    }
+
+    /* 主体部分 */
+    .main .left-side .inner {
+        background-color: #fff;
+        padding: 30px 10px;
+    }
+    .main .right-side .inner{
+        background-color: #fff;
     }
     nav.category a {
         margin-top: 20px;
@@ -20,16 +57,17 @@
     }
     .post-element-title {
         font-size: 25px;
-        border-bottom: 1px solid #ccc;
     }
     .post-element-title a {
         color: #333;
+        text-decoration:none;
+        border-bottom: 1px solid #ccc;
     }
     .post-element-desc {
         padding: 1rem;
     }
     .main {
-        margin-top: 25px;
+        margin-top: 100px;
     }
     .main ul {
         padding-left: 0px;
@@ -46,34 +84,47 @@
     .sidebar a {
         color: #444;
     }
+    .sidebar-title {
+        height: 30px;
+        background-color: #3d4450;
+        border-color: #080808;
+        line-height: 30px;
+        color: #fff;
+        padding: 0 9px;
+    }
+    .sidebar-content {
+        padding: 0 9px;
+    }
     </style>
   </head>
   <body>
-	<div class="container banner">
-		<h3>
-            typeidea blog - by the5fire
-		  <small class="text-muted"> - 基于Django的多人博客系统</small>
-		</h3>
-	</div>
-	<div class="container">
-        <nav class="nav category" style="border-bottom: 1px solid #ccc; padding-bottom: 3px;">
-            <a href="/">首页</a>
-            {% for cate in nav_cates %}
-            <a href="{% url 'category' cate.id %}">{{ cate.name }}</a>
-            {% endfor %}
-        </nav>
-	</div>
+      <header class="fixed-top">
+        <div class="container">
+            <nav class="nav">
+                <a class="logo" href="/">Typeidea</a>
+                <a class="index" href="/">首页</a>
+
+                {% for cate in nav_cates %}
+                <a class="link" href="{% url 'category' cate.id %}">{{ cate.name }}</a>
+                {% endfor %}
+            </nav>
+        </div>
+      </header>
+
 	<div class="container main">
         <div class="row">
-            <div class="col-9">
+            <div class="col-9 left-side">
+                <div class="inner">
                 {% block content %}
                 {% endblock %}
+                </div>
             </div>
-            <div class="col-3">
+            <div class="col-3 right-side">
+                <div class="inner">
                 {% for side in side_bars %}
-                <div class="container sidebar">
-                    <h4>{{ side.title }}</h4>
-                    <div>
+                <div class="sidebar">
+                    <div class="sidebar-title">{{ side.title }}</div>
+                    <div class="sidebar-content">
                         {% if side.display_type == 1 %}
                             {% autoescape off %}
                             {{ side.content }}
@@ -94,6 +145,7 @@
                     </div>
                 </div>
                 {% endfor %}
+                </div>
             </div>
         </div>
     </div>
