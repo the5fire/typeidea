@@ -47,7 +47,17 @@ class BasePostsView(CommonMixin, ListView):
 
 
 class IndexView(BasePostsView):
-    pass
+    def get_queryset(self):
+        query = self.request.GET.get('query')
+        qs = super(IndexView, self).get_queryset()
+        if not query:
+            return qs
+
+        return qs.filter(title__icontains=query)  # select * from blog_post where title ilike '%query%'
+
+    def get_context_data(self, **kwargs):
+        query = self.request.GET.get('query')
+        return super(IndexView, self).get_context_data(query=query)
 
 
 class CategoryView(BasePostsView):

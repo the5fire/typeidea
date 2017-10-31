@@ -23,12 +23,12 @@
                     </nav>
                 </div>
                 <div class="col-3">
-                    <div class="input-group search">
-                        <input type="text" class="form-control" placeholder="Search for..." aria-label="Search for...">
+                    <form action="/" method="GET" class="input-group search">
+                        <input type="text" name="query" class="form-control" placeholder="Search for..." aria-label="Search for...">
                         <span class="input-group-btn">
-                            <button class="btn btn-secondary" type="button">Go!</button>
+                            <input type="submit" class="btn btn-secondary" value="Go!"/>
                         </span>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>

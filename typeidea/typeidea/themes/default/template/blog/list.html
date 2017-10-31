@@ -1,6 +1,10 @@
 {% extends "./base.html" %}
 
 {% block content %}
+    {% if query %}
+        您搜索的关键词: {{ query }} 的结果如下:
+        <hr/>
+    {% endif %}
     {% if posts %}
         {% for post in posts %}
 			<div class="post-element">
@@ -24,9 +28,23 @@
 			</div>
 
         {% endfor %}
-        {% if page_obj.has_previous %}<a href="?page={{ page_obj.previous_page_number }}">上一页</a>{% endif %}
+
+        {% if page_obj.has_previous %}
+            {% if query %}
+            <a href="?page={{ page_obj.previous_page_number }}&query={{ query }}">上一页</a>
+            {% else %}
+            <a href="?page={{ page_obj.previous_page_number }}">上一页</a>
+            {% endif %}
+        {% endif %}
         Page {{ page_obj.number }} of {{ paginator.num_pages }}.
-        {% if page_obj.has_next %}<a href="?page={{ page_obj.next_page_number }}">下一页</a>{% endif %}
+        {% if page_obj.has_next %}
+            {% if query %}
+                <a href="?page={{ page_obj.next_page_number }}&query={{ query }}">下一页</a>
+            {% else %}
+                <a href="?page={{ page_obj.next_page_number }}">下一页</a>
+            {% endif %}
+        {% endif %}
+
     {% else %}
         Empty!!
     {% endif %}
