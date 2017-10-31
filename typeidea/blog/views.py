@@ -50,10 +50,9 @@ class IndexView(BasePostsView):
     def get_queryset(self):
         query = self.request.GET.get('query')
         qs = super(IndexView, self).get_queryset()
-        if not query:
-            return qs
-
-        return qs.filter(title__icontains=query)  # select * from blog_post where title ilike '%query%'
+        if query:
+            qs = qs.filter(title__icontains=query)  # select * from blog_post where title ilike '%query%'
+        return qs
 
     def get_context_data(self, **kwargs):
         query = self.request.GET.get('query')
@@ -70,7 +69,7 @@ class CategoryView(BasePostsView):
 
 class TagView(BasePostsView):
     def get_queryset(self):
-        tag_id = self.kwargs('tag_id')
+        tag_id = self.kwargs.get('tag_id')
         try:
             tag = Tag.objects.get(id=tag_id)
         except Tag.DoesNotExist:
@@ -78,6 +77,15 @@ class TagView(BasePostsView):
 
         posts = tag.posts.all()
         return posts
+
+
+class AuthorView(BasePostsView):
+    def get_queryset(self):
+        author_id = self.kwargs.get('author_id')
+        qs = super(AuthorView, self).get_queryset()
+        if author_id:
+            qs = qs.filter(owner_id=author_id)
+        return qs
 
 
 class PostView(CommonMixin, DetailView):

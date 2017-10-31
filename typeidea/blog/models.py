@@ -31,6 +31,7 @@ class Post(models.Model):
 
     class Meta:
         verbose_name = verbose_name_plural = "文章"
+        ordering = ['-id']
 
 
 class TestManager(models.Manager):
