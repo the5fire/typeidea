@@ -40,7 +40,7 @@ class CommentForm(forms.ModelForm):
     def clean_content(self):
         content = self.cleaned_data.get('content')
         if len(content) < 10:
-            raise forms.ValidationError('长度怎么能这么短呢！！')
+            raise forms.ValidationError('内容长度怎么能这么短呢！！')
         return content
 
     class Meta:
