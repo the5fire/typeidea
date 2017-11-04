@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+import markdown
 from django.contrib.auth.models import User
 from django.db import models
 
@@ -17,6 +18,8 @@ class Post(models.Model):
     tags = models.ManyToManyField('Tag', related_name="posts", verbose_name="标签")
 
     content = models.TextField(verbose_name="内容", help_text="注：目前仅支持Markdown格式数据")
+    html = models.TextField(verbose_name="渲染后的内容", default='', help_text="注：目前仅支持Markdown格式数据")
+    is_markdown = models.BooleanField(verbose_name="使用markdown格式", default=True)
     status = models.IntegerField(default=1, choices=STATUS_ITEMS, verbose_name="状态")
     owner = models.ForeignKey(User, verbose_name="作者")
 
@@ -28,6 +31,12 @@ class Post(models.Model):
 
     def __unicode__(self):
         return self.title
+
+    def save(self, *args, **kwargs):
+        if self.is_markdown:
+            self.html = markdown.markdown(self.content)
+
+        return super(Post, self).save(*args, **kwargs)
 
     class Meta:
         verbose_name = verbose_name_plural = "文章"
