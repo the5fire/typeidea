@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    {% block style %}
+    {% endblock %}
   </head>
   <body>
       <header class="fixed-top">
@@ -85,4 +87,6 @@
         <div class="container power">
             <span class="text-muted">Power by Typeidea@the5fire</span>
         </div>
+        {% block javascript %}
+        {% endblock %}
     </footer>

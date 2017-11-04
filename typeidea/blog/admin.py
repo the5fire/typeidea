@@ -36,6 +36,7 @@ class PostAdmin(BaseOwnerAdmin):
         'desc',
         'status',
         ('content', 'is_markdown'),
+        'html',
         'tags',
     )
 

@@ -1,5 +1,14 @@
 {% extends "./base.html" %}
+{% load static %}
 
+{% block style%}
+<link href="{% static 'css/prettify.css' %}" rel="stylesheet">
+<style>
+.linenums li {
+    background-color: inherit;
+}
+</style>
+{% endblock %}
 {% block content %}
 
 <nav aria-label="breadcrumb" role="navigation">
@@ -33,4 +42,13 @@
 
     {% include 'comment/block.html' %}
 </div>
+{% endblock %}
+
+{% block javascript%}
+<script src="{% static 'js/prettify.js' %}"></script>
+<script>
+window.onload = function(){
+    PR.prettyPrint();
+}
+</script>
 {% endblock %}
