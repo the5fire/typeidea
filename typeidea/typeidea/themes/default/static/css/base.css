@@ -91,3 +91,8 @@ nav.category a {
 .sidebar-content {
     padding: 0 9px;
 }
+/*comment*/
+.comment .nickname a {
+    font-size: 1.5rem;
+    color: #222;
+}
