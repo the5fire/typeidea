@@ -28,12 +28,13 @@ class CommonMixin(object):
     def get_context_data(self, **kwargs):
         side_bars = SideBar.objects.filter(status=1)
         recently_posts = Post.objects.filter(status=1)[:10]
-        # hot_posts = Post.objects.filte(status=1).order_by('views')[:10]
+        hot_posts = Post.objects.filter(status=1).order_by('-pv')[:10]
         recently_comments = Comment.objects.filter(status=1)[:10]
         kwargs.update({
             'side_bars': side_bars,
             'recently_comments': recently_comments,
             'recently_posts': recently_posts,
+            'hot_posts': hot_posts,
         })
         kwargs.update(self.get_category_context())
         return super(CommonMixin, self).get_context_data(**kwargs)
@@ -93,3 +94,15 @@ class PostView(CommonMixin, CommentShowMixin, DetailView):
     model = Post
     template_name = 'blog/detail.html'
     context_object_name = 'post'
+
+    def get(self, request, *args, **kwargs):
+        response = super(PostView, self).get(request, *args, **kwargs)
+        self.pv_uv()
+        return response
+
+    def pv_uv(self):
+        # 增加pv
+        # 判断用户，增加uv
+        self.object.increase_pv()
+        # TODO: 判断用户是否在24小时内访问过
+        self.object.increase_uv()
