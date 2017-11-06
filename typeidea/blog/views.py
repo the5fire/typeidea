@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+from django.core.cache import cache
 from django.views.generic import ListView, DetailView
 
 from .models import Post, Tag, Category
@@ -103,6 +104,16 @@ class PostView(CommonMixin, CommentShowMixin, DetailView):
     def pv_uv(self):
         # 增加pv
         # 判断用户，增加uv
-        self.object.increase_pv()
-        # TODO: 判断用户是否在24小时内访问过
-        self.object.increase_uv()
+        sessionid = self.request.COOKIES.get('sessionid')
+        if not sessionid:
+            return
+
+        pv_key = 'pv:%s:%s' % (sessionid, self.request.path)
+        if not cache.get(pv_key):
+            self.object.increase_pv()
+            cache.set(pv_key, 1, 30)
+
+        uv_key = 'uv:%s:%s' % (sessionid, self.request.path)
+        if not cache.get(uv_key):
+            self.object.increase_uv()
+            cache.set(uv_key, 1, 60 * 60 * 24)
