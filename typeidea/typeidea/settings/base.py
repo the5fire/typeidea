@@ -25,6 +25,9 @@ INSTALLED_APPS = [
     'comment',
     'typeidea',
 
+    'dal',
+    'dal_select2',
+
     'xadmin',
     'crispy_forms',
     'reversion',
