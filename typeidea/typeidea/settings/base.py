@@ -28,6 +28,8 @@ INSTALLED_APPS = [
     'dal',
     'dal_select2',
 
+    'ckeditor',
+
     'xadmin',
     'crispy_forms',
     'reversion',
@@ -53,7 +55,6 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'typeidea.urls'
 
 WSGI_APPLICATION = 'typeidea.wsgi.application'
-
 
 
 # Password validation
