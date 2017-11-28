@@ -15,15 +15,19 @@ from blog.views import (
     IndexView, CategoryView, TagView, PostView,
     AuthorView
 )
-from blog.api import PostViewSet, CategoryViewSet
+from blog.api import (
+    PostViewSet, CategoryViewSet, TagViewSet, UserViewSet
+)
 from config.views import LinkView
 from comment.views import CommentView
 from typeidea import adminx  # NOQA
 from .autocomplete import CategoryAutocomplete, TagAutocomplete
 
 router = routers.DefaultRouter()
-router.register(r'posts', PostViewSet)
-router.register(r'categories', CategoryViewSet)
+router.register(r'post', PostViewSet)
+router.register(r'category', CategoryViewSet)
+router.register(r'tag', TagViewSet)
+router.register(r'user', UserViewSet)
 
 
 urlpatterns = [
