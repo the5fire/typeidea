@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+import logging
+
 from django.core.cache import cache
 from django.views.generic import ListView, DetailView
 
@@ -9,9 +11,12 @@ from config.models import SideBar
 from comment.models import Comment
 from comment.views import CommentShowMixin
 
+logger = logging.getLogger('django')
+
 
 class CommonMixin(object):
     def get_category_context(self):
+        logger.info('test')
         categories = Category.objects.filter(status=1)  # TODO: fix magic number
 
         nav_cates = []
