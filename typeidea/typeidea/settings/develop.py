@@ -24,8 +24,14 @@ CACHES = {
 
 INSTALLED_APPS += [
     'debug_toolbar',
+    'silk',
+
 ]
 
-MIDDLEWARE.insert(0, 'debug_toolbar.middleware.DebugToolbarMiddleware')
+MIDDLEWARE += [
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
+    'silk.middleware.SilkyMiddleware',
+]
+SILKY_PYTHON_PROFILER = True
 
 INTERNAL_IPS = ['127.0.0.1']

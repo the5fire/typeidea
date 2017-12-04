@@ -25,8 +25,6 @@ INSTALLED_APPS = [
     'comment',
     'typeidea',
 
-    # 'silk',
-
     'dal',
     'dal_select2',
 

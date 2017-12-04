@@ -5,6 +5,7 @@ import logging
 
 from django.core.cache import cache
 from django.views.generic import ListView, DetailView
+from silk.profiling.profiler import silk_profile
 
 from .models import Post, Tag, Category
 from config.models import SideBar
@@ -15,6 +16,7 @@ logger = logging.getLogger('django')
 
 
 class CommonMixin(object):
+    @silk_profile(name='get_category_context')
     def get_category_context(self):
         logger.info('test')
         categories = Category.objects.filter(status=1)  # TODO: fix magic number
