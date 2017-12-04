@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+import logging
+
 from django.core.cache import cache
 from django.views.generic import ListView, DetailView
 
@@ -8,6 +10,8 @@ from .models import Post, Tag, Category
 from config.models import SideBar
 from comment.models import Comment
 from comment.views import CommentShowMixin
+
+logger = logging.getLogger(__name__)
 
 
 class CommonMixin(object):
@@ -76,6 +80,7 @@ class TagView(BasePostsView):
         try:
             tag = Tag.objects.get(id=tag_id)
         except Tag.DoesNotExist:
+            logger.error('访问到不存在的tagid[%s]', tag_id)
             return []
 
         posts = tag.posts.all()
