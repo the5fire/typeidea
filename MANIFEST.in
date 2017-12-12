@@ -1,0 +1,1 @@
+recursive-include typeidea *.py *.html *.js *.css
