@@ -10,13 +10,11 @@ from .models import Post, Tag, Category
 from config.models import SideBar
 from comment.models import Comment
 from comment.views import CommentShowMixin
-from typeidea.utils import cache_it
 
 logger = logging.getLogger(__name__)
 
 
 class CommonMixin(object):
-    @cache_it
     def get_category_context(self):
         categories = Category.objects.filter(status=1)  # TODO: fix magic number
 

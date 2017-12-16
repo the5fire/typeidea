@@ -1,6 +1,8 @@
 # coding:utf-8
 import os
 
+import raven
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -43,6 +45,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'raven.contrib.django.raven_compat',
 ]
 
 MIDDLEWARE = [
@@ -58,6 +62,13 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'typeidea.urls'
 
 WSGI_APPLICATION = 'typeidea.wsgi.application'
+
+RAVEN_CONFIG = {
+    'dsn': 'http://4ff6977b19b74a638161a874a59f8468:7c40982d39424b32a58a5710d1ce41a7@192.168.59.103:9000//3',
+    # If you are using git, you can also automatically configure the
+    # release based on the git info.
+    'release': raven.fetch_git_sha(os.path.abspath(os.pardir)),
+}
 
 
 # Password validation

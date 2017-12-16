@@ -2,7 +2,8 @@
 
 from .base import *  # NOQA
 
-DEBUG = True
+
+DEBUG = False
 
 DATABASES = {
     'default': {
@@ -29,15 +30,41 @@ CACHES = {
     }
 }
 
-INSTALLED_APPS += [
-    'debug_toolbar',
-    # 'silk',
-]
-
-MIDDLEWARE += [
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
-    # 'silk.middleware.SilkyMiddleware',
-]
-
-INTERNAL_IPS = ['127.0.0.1']
-SILKY_PYTHON_PROFILER = True
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'brief': {
+            'format': '%(asctime)s %(levelname)-8s %(name)-15s %(message)s'
+        }
+    },
+    'handlers': {
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.handlers.RotatingFileHandler',
+            'filename': 'debug.log',
+        },
+        'console': {
+            'level': 'DEBUG',
+            'formatter': 'brief',
+            'class': 'logging.StreamHandler',
+        },
+        'sentry': {
+            'level': 'ERROR',
+            'class': 'raven.handlers.logging.SentryHandler',
+            'dsn': 'http://4ff6977b19b74a638161a874a59f8468:7c40982d39424b32a58a5710d1ce41a7@192.168.59.103:9000//3',
+        },
+    },
+    'loggers': {
+        '': {
+            'handlers': ['console', 'sentry'],
+            'level': 'INFO',
+            'propagate': True,
+        },
+        'django': {
+            'handlers': ['console'],
+            'level': 'INFO',
+            'propagate': False,
+        },
+    },
+}
