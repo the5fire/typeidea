@@ -32,7 +32,7 @@ class Post(models.Model):
         return '当前状态:%s' % self.status
     status_show.short_description = '展示状态'
 
-    def __unicode__(self):
+    def __str__(self):
         return self.title
 
     def increase_pv(self):
@@ -72,7 +72,7 @@ class Category(models.Model):
     owner = models.ForeignKey(User, verbose_name="作者")
     created_time = models.DateTimeField(auto_now_add=True, verbose_name="创建时间")
 
-    def __unicode__(self):
+    def __str__(self):
         return self.name
 
     class Meta:
@@ -92,9 +92,6 @@ class Tag(models.Model):
     created_time = models.DateTimeField(auto_now_add=True, verbose_name="创建时间")
 
     def __str__(self):
-        return self.name
-
-    def __unicode__(self):
         return self.name
 
     class Meta:

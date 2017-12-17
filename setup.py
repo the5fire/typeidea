@@ -31,7 +31,8 @@ setup(
         'Markdown==2.6.9',
         'django-redis==4.8.0',
         'coreapi==2.3.3',
-        'gunnicorn==19.7.1',
+        'gunicorn==19.7.1',
+        'raven==6.3.0',
     ],
     scripts=[
         'typeidea/manage.py',

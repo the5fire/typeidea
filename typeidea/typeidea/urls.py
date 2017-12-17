@@ -40,7 +40,7 @@ def static(prefix, **kwargs):
 
 
 urlpatterns = [
-    url(r'^$', cache_page(60 * 10)(IndexView.as_view()), name="index"),
+    url(r'^$', IndexView.as_view(), name="index"),
     url(r'^category/(?P<category_id>\d+)/', cache_page(60 * 10)(CategoryView.as_view()), name="category"),
     url(r'^tag/(?P<tag_id>\d+)/$', TagView.as_view(), name="tag"),
     url(r'^post/(?P<pk>\d+)/$', PostView.as_view(), name="detail"),
