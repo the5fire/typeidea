@@ -17,7 +17,7 @@ class Link(models.Model):
                                          verbose_name="权重",
                                          help_text="权重越高展示顺序约靠前")
 
-    owner = models.ForeignKey(User, verbose_name="作者")
+    owner = models.ForeignKey(User, verbose_name="作者", on_delete=models.DO_NOTHING)
     created_time = models.DateTimeField(auto_now_add=True, verbose_name="创建时间")
 
     class Meta:
@@ -42,7 +42,7 @@ class SideBar(models.Model):
     content = models.CharField(max_length=500, blank=True, verbose_name="内容",
                                help_text="如果设置的不是HTML类型，可为空")
 
-    owner = models.ForeignKey(User, verbose_name="作者")
+    owner = models.ForeignKey(User, verbose_name="作者", on_delete=models.DO_NOTHING)
     created_time = models.DateTimeField(auto_now_add=True, verbose_name="创建时间")
 
     class Meta:

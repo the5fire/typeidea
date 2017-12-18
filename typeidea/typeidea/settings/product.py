@@ -57,7 +57,7 @@ LOGGING = {
     },
     'loggers': {
         '': {
-            'handlers': ['console', 'sentry'],
+            'handlers': ['console'],
             'level': 'INFO',
             'propagate': True,
         },

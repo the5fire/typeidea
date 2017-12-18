@@ -1,9 +1,10 @@
 # coding:utf-8
 from __future__ import unicode_literals
 
+from io import BytesIO
+
 from django.core.files.storage import FileSystemStorage
 from django.core.files.uploadedfile import InMemoryUploadedFile
-from django.utils.six import StringIO
 from PIL import Image, ImageDraw, ImageFont
 
 
@@ -18,9 +19,10 @@ class MyStorage(FileSystemStorage):
         return super(MyStorage, self).save(name, content, max_length=max_length)
 
     def convert_image_to_file(self, image, name):
-        temp = StringIO()
+        temp = BytesIO()
         image.save(temp, format='PNG')
-        return InMemoryUploadedFile(temp, None, name, 'image/png', temp.len, None)
+        buffer = temp.getbuffer()
+        return InMemoryUploadedFile(temp, None, name, 'image/png', buffer.nbytes, None)
 
     def watermark_with_text(self, file_obj, text, color, fontfamily="/Users/the5fire/Downloads/font1060/font1060/Sofia-Regular.otf"):
         image = Image.open(file_obj).convert('RGBA')
