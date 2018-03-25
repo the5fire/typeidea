@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-from .models import Post
+from .models import Post, Category
 
 
 def post_list(request, category_id=None, tag_id=None):
@@ -20,6 +20,7 @@ def post_list(request, category_id=None, tag_id=None):
         'tag': tag,
         'post_list': post_list,
     }
+    context.update(get_navs())
     return render(request, 'blog/list.html', context=context)
 
 
@@ -28,4 +29,25 @@ def post_detail(request, post_id=None):
         post = Post.objects.get(id=post_id)
     except Post.DoesNotExist:
         post = None
-    return render(request, 'blog/detail.html', context={'post': post})
+
+    context = {
+        'post': post,
+    }
+    context.update(get_navs())
+    return render(request, 'blog/detail.html', context=context)
+
+
+def get_navs():
+    categories = Category.objects.filter(status=Category.STATUS_NORMAL)
+    nav_categories = []
+    normal_categories = []
+    for cate in categories:
+        if cate.is_nav:
+            nav_categories.append(cate)
+        else:
+            normal_categories.append(cate)
+
+    return {
+        'navs': nav_categories,
+        'categories': normal_categories,
+    }
