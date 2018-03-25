@@ -65,6 +65,9 @@ class Post(models.Model):
     owner = models.ForeignKey(User, verbose_name="作者")
     created_time = models.DateTimeField(auto_now_add=True, verbose_name="创建时间")
 
+    pv = models.PositiveIntegerField(default=1)
+    uv = models.PositiveIntegerField(default=1)
+
     class Meta:
         verbose_name = verbose_name_plural = "文章"
 
@@ -94,3 +97,11 @@ class Post(models.Model):
             post_list = category.post_set.filter(status=Post.STATUS_NORMAL)\
                 .select_related('owner', 'category')
         return post_list, category
+
+    @classmethod
+    def latest_posts(cls):
+        return cls.objects.filter(status=cls.STATUS_NORMAL)
+
+    @classmethod
+    def hot_posts(cls):
+        return cls.objects.filter(status=cls.STATUS_NORMAL).ordery_by('-pv')
