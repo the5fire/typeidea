@@ -1,5 +1,6 @@
 from django.shortcuts import render
 
+from config.models import SideBar
 from .models import Post, Category
 
 
@@ -19,6 +20,7 @@ def post_list(request, category_id=None, tag_id=None):
         'category': category,
         'tag': tag,
         'post_list': post_list,
+        'sidebars': get_sidebars(),
     }
     context.update(get_navs())
     return render(request, 'blog/list.html', context=context)
@@ -32,6 +34,7 @@ def post_detail(request, post_id=None):
 
     context = {
         'post': post,
+        'sidebars': get_sidebars(),
     }
     context.update(get_navs())
     return render(request, 'blog/detail.html', context=context)
@@ -51,3 +54,7 @@ def get_navs():
         'navs': nav_categories,
         'categories': normal_categories,
     }
+
+
+def get_sidebars():
+    return SideBar.objects.filter(status=SideBar.STATUS_SHOW)

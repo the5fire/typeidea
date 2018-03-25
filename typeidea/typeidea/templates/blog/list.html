@@ -33,11 +33,19 @@
     {% endfor %}
     </ul>
     <hr/>
-        <div>底部分类:
-            {% for cate in categories %}
-            <a href="/category/{{ cate.id}}/">{{ cate.name }}</a>
-            {% endfor %}
-        </div>
+    <div>底部分类:
+        {% for cate in categories %}
+        <a href="/category/{{ cate.id}}/">{{ cate.name }}</a>
+        {% endfor %}
+    </div>
+
+    <hr/>
+    <div>侧边栏展示:
+        {% for sidebar in sidebars %}
+            <h4>{{ sidebar.title }}</h4>
+            {{ sidebar.content }}
+        {% endfor %}
+    </div>
     </body>
 </html>
 
