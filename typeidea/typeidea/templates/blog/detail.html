@@ -1,11 +1,7 @@
-<!DOCTYPE HTML>
-<html>
-    <head>
-        <meta charset="utf-8"/>
-        <title>typeidea博客系统</title>
-    </head>
-    <body>
+{% extends "./base.html" %}
+{% block title %} {{ post.title }} {% endblock %}
 
+{% block main %}
     {% if post %}
     <h1>{{ post.title }}</h1>
     <div>
@@ -17,13 +13,4 @@
         {{ post.content }}
     </p>
     {% endif %}
-
-    <hr/>
-    <div>侧边栏展示:
-        {% for sidebar in sidebars %}
-            <h4>{{ sidebar.title }}</h4>
-            {{ sidebar.content }}
-        {% endfor %}
-    </div>
-    </body>
-</html>
+{% endblock %}
