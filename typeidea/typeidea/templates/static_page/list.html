@@ -1,0 +1,113 @@
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    <title>Typeidea blog - by the5fire</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.css">
+    <style>
+    .post {
+        margin-bottom: 5px;
+    }
+    </style>
+  </head>
+  <body>
+	<div class="container head">
+        <nav class="navbar  fixed-top navbar-expand-lg navbar-light bg-light">
+          <a class="navbar-brand" href="#">首页</a>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="#">Python</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Django实战</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Tornado</a>
+              </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0">
+              <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success" type="submit">搜索</button>
+            </form>
+          </div>
+        </nav>
+        <div class="jumbotron">
+            <h1 class="display-4">Typeidea</h1>
+            <p class="lead">基于Django的多人博客系统</p>
+        </div>
+	</div>
+	<div class="container main">
+        <div class="row">
+            <div class="col-xl-9 post-list">
+                <div class="card post">
+                    <div class="card-body">
+                        <h5 class="card-title"><a href="#">这里是标题</a></h5>
+                        <span class="card-link">作者:<a href="#">胡阳</a></span>
+                        <span class="card-link">分类:<a href="#">Python</a></span>
+                        <span class="card-link">标签:
+                            <a href="#">Python</a>
+                            <a href="#">Django</a>
+                            <a href="#">经验</a>
+                        </span>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.<a href="#">完整内容</a></p>
+                    </div>
+                </div>
+                <div class="card post">
+                    <div class="card-body">
+                        <h5 class="card-title"><a href="#">这里是标题</a></h5>
+                        <span class="card-link">作者:<a href="#">胡阳</a></span>
+                        <span class="card-link">分类:<a href="#">Python</a></span>
+                        <span class="card-link">标签:
+                            <a href="#">Python</a>
+                            <a href="#">Django</a>
+                            <a href="#">经验</a>
+                        </span>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.<a href="#">完整内容</a></p>
+                    </div>
+                </div>
+                <div class="card post">
+                    <div class="card-body">
+                        <h5 class="card-title"><a href="#">这里是标题</a></h5>
+                        <span class="card-link">作者:<a href="#">the5fire</a></span>
+                        <span class="card-link">分类:<a href="#">Python</a></span>
+                        <span class="card-link">标签:
+                            <a href="#">Python</a>
+                            <a href="#">Django</a>
+                            <a href="#">经验</a>
+                        </span>
+                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.<a href="#">完整内容</a></p>
+                    </div>
+                </div>
+                <a href="?page={{ page_obj.previous_page_number }}">上一页</a>
+                Page 1 of 1.
+                <a href="?page={{ page_obj.next_page_number }}">下一页</a>
+            </div>
+            <div class="col-xl-3">
+                <div class="card sidebar">
+                    <div class="card-body">
+                    <h4 class="card-title">关于博主</h4>
+                    <p>
+                    网名：the5fire， 多年Python工程师
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <hr/>
+            <nav class="nav category">
+                <a href="#" class="nav-link">读书</a>
+                <a href="#" class="nav-link">产品</a>
+                <a href="#" class="nav-link">工作经历</a>
+            </nav>
+        </div>
+        <div class="container power">
+            <span class="text-muted">Power by Typeidea@the5fire</span>
+        </div>
+    </footer>
+</html>
+
