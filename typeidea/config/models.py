@@ -25,6 +25,7 @@ class Link(models.Model):
 
     class Meta:
         verbose_name = verbose_name_plural = "友链"
+        ordering = ['-weight', ]
 
     def __str__(self):
         return self.title
