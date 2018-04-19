@@ -24,10 +24,6 @@ class CategoryAdmin(BaseOwnerAdmin):
     list_display = ('name', 'status', 'is_nav', 'created_time', 'post_count')
     fields = ('name', 'status', 'is_nav')
 
-    def save_model(self, request, obj, form, change):
-        obj.owner = request.user
-        return super(CategoryAdmin, self).save_model(request, obj, form, change)
-
     def post_count(self, obj):
         return obj.post_set.count()
 
@@ -38,10 +34,6 @@ class CategoryAdmin(BaseOwnerAdmin):
 class TagAdmin(BaseOwnerAdmin):
     list_display = ('name', 'status', 'created_time')
     fields = ('name', 'status')
-
-    def save_model(self, request, obj, form, change):
-        obj.owner = request.user
-        return super(TagAdmin, self).save_model(request, obj, form, change)
 
 
 class CategoryOwnerFilter(RelatedFieldListFilter):
@@ -99,14 +91,6 @@ class PostAdmin(BaseOwnerAdmin):
             reverse('cus_admin:blog_post_change', args=(obj.id,))
         )
     operator.short_description = '操作'
-
-    def save_model(self, request, obj, form, change):
-        obj.owner = request.user
-        return super(PostAdmin, self).save_model(request, obj, form, change)
-
-    def get_queryset(self, request):
-        qs = super(PostAdmin, self).get_queryset(request)
-        return qs.filter(owner=request.user)
 
     class Media:
         css = {
