@@ -1,5 +1,6 @@
+import xadmin
+
 from django.conf.urls import url
-from django.contrib import admin
 from django.contrib.sitemaps import views as sitemap_views
 
 from blog.views import (
@@ -10,7 +11,6 @@ from blog.rss import LatestPostFeed
 from blog.sitemap import PostSitemap
 from config.views import LinkListView
 from comment.views import CommentView
-from .custom_site import custom_site
 
 urlpatterns = [
     url(r'^$', IndexView.as_view(), name='index'),
@@ -21,8 +21,7 @@ urlpatterns = [
     url(r'^author/(?P<owner_id>\d+)/$', AuthorView.as_view(), name='author'),
     url(r'^post/(?P<post_id>\d+).html$', PostDetailView.as_view(), name='post-detail'),
     url(r'^links/$', LinkListView.as_view(), name='links'),
-    url(r'^super_admin/', admin.site.urls, name='super-admin'),
-    url(r'^admin/', custom_site.urls, name='admin'),
+    url(r'^admin/', xadmin.site.urls, name='xadmin'),
     url(r'^rss|feed/', LatestPostFeed(), name='rss'),
     url(r'^sitemap\.xml$', sitemap_views.sitemap, {'sitemaps': {'posts': PostSitemap}}),
 ]
