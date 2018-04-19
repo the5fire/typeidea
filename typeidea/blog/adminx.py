@@ -92,11 +92,14 @@ class PostAdmin(BaseOwnerAdmin):
         )
     operator.short_description = '操作'
 
-    class Media:
-        css = {
-            'all': ("https://cdn.bootcss.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css", ),
-        }
-        js = ('https://cdn.bootcss.com/bootstrap/4.0.0-beta.2/js/bootstrap.bundle.js', )
+    # def get_media(self):
+        # # xadmin基于bootstrap，引入会页面样式冲突，仅供参考, 故注释。
+        # media = super().get_media()
+        # media.add_js(['https://cdn.bootcss.com/bootstrap/4.0.0-beta.2/js/bootstrap.bundle.js'])
+        # media.add_css({
+            # 'all': ("https://cdn.bootcss.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css", ),
+        # })
+        # return media
 
 
 @xadmin.sites.register(LogEntry)

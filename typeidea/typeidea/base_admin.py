@@ -11,5 +11,5 @@ class BaseOwnerAdmin:
         return qs.filter(owner=request.user)
 
     def save_models(self):
-        self.obj.owner = self.request.user
+        self.new_obj.owner = self.request.user
         return super().save_models()
