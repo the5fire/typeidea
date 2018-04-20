@@ -36,6 +36,8 @@ INSTALLED_APPS = [
     'config',
     'comment',
 
+    'ckeditor',
+    'ckeditor_uploader',
     'dal',
     'dal_select2',
     'xadmin',
@@ -137,3 +139,16 @@ STATICFILES_DIRS = [
 
 XADMIN_TITLE = 'Typeidea管理后台'
 XADMIN_FOOTER_TITLE = 'power by the5fire.com'
+
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'full',
+        'height': 300,
+        'width': 800,
+        'tabSpaces': 4,
+    },
+}
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+CKEDITOR_UPLOAD_PATH = "article_images"
