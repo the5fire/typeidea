@@ -11,6 +11,8 @@ from blog.rss import LatestPostFeed
 from blog.sitemap import PostSitemap
 from config.views import LinkListView
 from comment.views import CommentView
+from .autocomplete import CategoryAutocomplete, TagAutocomplete
+
 
 urlpatterns = [
     url(r'^$', IndexView.as_view(), name='index'),
@@ -24,4 +26,6 @@ urlpatterns = [
     url(r'^admin/', xadmin.site.urls, name='xadmin'),
     url(r'^rss|feed/', LatestPostFeed(), name='rss'),
     url(r'^sitemap\.xml$', sitemap_views.sitemap, {'sitemaps': {'posts': PostSitemap}}),
+    url(r'^category-autocomplete/$', CategoryAutocomplete.as_view(), name='category-autocomplete'),
+    url(r'^tag-autocomplete/$', TagAutocomplete.as_view(), name='tag-autocomplete'),
 ]

@@ -1,9 +1,8 @@
 import xadmin
 from xadmin.filters import RelatedFieldListFilter
 from xadmin.filters import manager
-from xadmin.layout import Row, Fieldset
+from xadmin.layout import Row, Fieldset, Container
 
-from django.contrib.admin.models import LogEntry
 from django.urls import reverse
 from django.utils.html import format_html
 
@@ -13,7 +12,11 @@ from typeidea.base_admin import BaseOwnerAdmin
 
 
 class PostInline:
-    fields = ('title', 'desc')
+    form_layout = (
+        Container(
+            Row("title", "desc"),
+        )
+    )
     extra = 1  # 控制额外多几个
     model = Post
 
