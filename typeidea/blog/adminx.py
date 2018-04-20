@@ -100,8 +100,3 @@ class PostAdmin(BaseOwnerAdmin):
             # 'all': ("https://cdn.bootcss.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css", ),
         # })
         # return media
-
-
-@xadmin.sites.register(LogEntry)
-class LogEntryAdmin:
-    list_display = ['object_repr', 'object_id', 'action_flag', 'user', 'change_message']
