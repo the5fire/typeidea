@@ -22,18 +22,18 @@ class WatermarkStorage(FileSystemStorage):
         file_size = temp.tell()
         return InMemoryUploadedFile(temp, None, name, 'image/png', file_size, None)
 
-    def watermark_with_text(self, file_obj, text, color, fontfamily="/Users/the5fire/Downloads/font1060/font1060/Sofia-Regular.otf"):
+    def watermark_with_text(self, file_obj, text, color, fontfamily=None):
         image = Image.open(file_obj).convert('RGBA')
-        imageWatermark = Image.new('RGBA', image.size, (255, 255, 255, 0))
-
-        draw = ImageDraw.Draw(imageWatermark)
+        draw = ImageDraw.Draw(image)
         width, height = image.size
         margin = 10
-        font = ImageFont.truetype(fontfamily, int(height / 20))
+        if fontfamily:
+            font = ImageFont.truetype(fontfamily, int(height / 20))
+        else:
+            font = None
         textWidth, textHeight = draw.textsize(text, font)
-        x = (width - textWidth - margin) / 2
-        y = height - textHeight - margin
-
+        x = (width - textWidth - margin) / 2  # 计算横轴位置
+        y = height - textHeight - margin  # 计算纵轴位置
         draw.text((x, y), text, color, font)
 
-        return Image.alpha_composite(image, imageWatermark)
+        return image
