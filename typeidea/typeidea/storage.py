@@ -19,8 +19,7 @@ class WatermarkStorage(FileSystemStorage):
     def convert_image_to_file(self, image, name):
         temp = BytesIO()
         image.save(temp, format='PNG')
-        file_size = len(temp.read())
-        temp.seek(0, 0)
+        file_size = temp.tell()
         return InMemoryUploadedFile(temp, None, name, 'image/png', file_size, None)
 
     def watermark_with_text(self, file_obj, text, color, fontfamily="/Users/the5fire/Downloads/font1060/font1060/Sofia-Regular.otf"):
