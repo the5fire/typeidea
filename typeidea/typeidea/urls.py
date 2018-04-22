@@ -18,7 +18,7 @@ from comment.views import CommentView
 from .autocomplete import CategoryAutocomplete, TagAutocomplete
 
 router = DefaultRouter()
-router.register(r'post', PostViewSet, base_name='post')
+router.register(r'post', PostViewSet, base_name='api-post')
 
 urlpatterns = [
     url(r'^$', IndexView.as_view(), name='index'),
@@ -35,5 +35,5 @@ urlpatterns = [
     url(r'^category-autocomplete/$', CategoryAutocomplete.as_view(), name='category-autocomplete'),
     url(r'^tag-autocomplete/$', TagAutocomplete.as_view(), name='tag-autocomplete'),
     url(r'^ckeditor/', include('ckeditor_uploader.urls')),
-    url(r'^api/', include(router.urls, namespace="api")),
+    url(r'^api/', include(router.urls)),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
