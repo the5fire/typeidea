@@ -9,6 +9,7 @@ from blog.views import (
     IndexView, CategoryView, TagView,
     PostDetailView, SearchView, AuthorView
 )
+from blog.apis import post_list, PostList
 from blog.rss import LatestPostFeed
 from blog.sitemap import PostSitemap
 from config.views import LinkListView
@@ -31,4 +32,6 @@ urlpatterns = [
     url(r'^category-autocomplete/$', CategoryAutocomplete.as_view(), name='category-autocomplete'),
     url(r'^tag-autocomplete/$', TagAutocomplete.as_view(), name='tag-autocomplete'),
     url(r'^ckeditor/', include('ckeditor_uploader.urls')),
+    url(r'^api/post/', post_list, name='post-list'),
+    # url(r'^api/post/', PostList.as_view(), name='post-list'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

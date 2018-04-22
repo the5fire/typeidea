@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'dal_select2',
     'xadmin',
     'crispy_forms',
+    'rest_framework',
 
     'django.contrib.admin',
     'django.contrib.auth',
