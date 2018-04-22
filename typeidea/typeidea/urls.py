@@ -1,5 +1,6 @@
 import xadmin
 from rest_framework.routers import DefaultRouter
+from rest_framework.documentation import include_docs_urls
 
 from django.conf import settings
 from django.conf.urls import url, include
@@ -36,4 +37,5 @@ urlpatterns = [
     url(r'^tag-autocomplete/$', TagAutocomplete.as_view(), name='tag-autocomplete'),
     url(r'^ckeditor/', include('ckeditor_uploader.urls')),
     url(r'^api/', include(router.urls)),
+    url(r'^api/docs/', include_docs_urls(title='typeidea apis')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
