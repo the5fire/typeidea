@@ -9,15 +9,11 @@ from django.shortcuts import get_object_or_404
 from config.models import SideBar
 from .models import Post, Category, Tag
 
-# FORMAT = '%(asctime)-15s %(message)s'
-# logging.basicConfig(format=FORMAT)
 logger = logging.getLogger(__name__)
 
 
 class CommonViewMixin:
     def get_context_data(self, **kwargs):
-        logger.warning('Error Message')
-
         context = super().get_context_data(**kwargs)
         context.update({
             'sidebars': self.get_sidebars(),
