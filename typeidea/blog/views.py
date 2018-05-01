@@ -5,7 +5,6 @@ from django.core.cache import cache
 from django.db.models import Q, F
 from django.views.generic import ListView, DetailView
 from django.shortcuts import get_object_or_404
-from silk.profiling.profiler import silk_profile
 
 
 from config.models import SideBar
@@ -15,7 +14,6 @@ logger = logging.getLogger(__name__)
 
 
 class CommonViewMixin:
-    @silk_profile(name='get_category_context')
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context.update({
