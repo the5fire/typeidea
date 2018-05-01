@@ -1,3 +1,4 @@
+import logging
 from datetime import date
 
 from django.core.cache import cache
@@ -8,9 +9,15 @@ from django.shortcuts import get_object_or_404
 from config.models import SideBar
 from .models import Post, Category, Tag
 
+# FORMAT = '%(asctime)-15s %(message)s'
+# logging.basicConfig(format=FORMAT)
+logger = logging.getLogger(__name__)
+
 
 class CommonViewMixin:
     def get_context_data(self, **kwargs):
+        logger.warning('Error Message')
+
         context = super().get_context_data(**kwargs)
         context.update({
             'sidebars': self.get_sidebars(),
@@ -38,7 +45,9 @@ class CommonViewMixin:
 
 
 class IndexView(CommonViewMixin, ListView):
-    queryset = Post.objects.filter(status=Post.STATUS_NORMAL)
+    queryset = Post.objects.filter(status=Post.STATUS_NORMAL)\
+        .select_related('owner')\
+        .select_related('category')
     paginate_by = 5
     context_object_name = 'post_list'
     template_name = 'blog/list.html'
