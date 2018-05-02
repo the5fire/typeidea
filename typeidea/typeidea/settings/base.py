@@ -147,6 +147,7 @@ CKEDITOR_CONFIGS = {
         'height': 300,
         'width': 800,
         'tabSpaces': 4,
+        'extraPlugins': 'codesnippet',
     },
 }
 
