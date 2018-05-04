@@ -23,7 +23,7 @@ class PostInline:
 
 @xadmin.sites.register(Category)
 class CategoryAdmin(BaseOwnerAdmin):
-    inlines = [PostInline, ]
+    # inlines = [PostInline, ]
     list_display = ('name', 'status', 'is_nav', 'created_time', 'post_count')
     fields = ('name', 'status', 'is_nav')
 
