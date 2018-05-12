@@ -17,6 +17,8 @@ setup(
     include_package_data=True,  # 方法二 配合 MANIFEST.in文件
     install_requires=[
         'django~=1.11',
+        'gunicorn==19.8.1',
+        'supervisor==4.0.0dev0',
     ],
     scripts=[
         'typeidea/manage.py',
