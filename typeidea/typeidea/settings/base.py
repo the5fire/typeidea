@@ -26,7 +26,7 @@ SECRET_KEY = 'mspj07-bob3&2(*6h+)30iat$mnnd6g05m4ap&-eu0d!774c%%'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
