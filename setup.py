@@ -19,6 +19,14 @@ setup(
         'django~=1.11',
         'gunicorn==19.8.1',
         'supervisor==4.0.0dev0',
+        'xadmin==0.6.1',
+        'mysqlclient==1.3.12',
+        'django-ckeditor==5.4.0',
+        'django-rest-framework==0.1.0',
+        'django-redis==4.8.0',
+        # debug
+        'django-debug-toolbar==1.9.1',
+        'django-silk==2.0.0',
     ],
     scripts=[
         'typeidea/manage.py',
