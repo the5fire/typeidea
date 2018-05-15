@@ -24,6 +24,10 @@ setup(
         'django-ckeditor==5.4.0',
         'django-rest-framework==0.1.0',
         'django-redis==4.8.0',
+        'django-autocomplete-light==3.2.10',
+        'mistune==0.8.3',
+        'Pillow==4.3.0',
+        'coreapi==2.3.3',
         # debug
         'django-debug-toolbar==1.9.1',
         'django-silk==2.0.0',
