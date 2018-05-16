@@ -3,7 +3,7 @@ from datetime import date
 
 from django.core.cache import cache
 from django.db.models import Q, F
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, TemplateView
 from django.shortcuts import get_object_or_404
 
 
@@ -138,3 +138,19 @@ class AuthorView(IndexView):
         queryset = super().get_queryset()
         author_id = self.kwargs.get('owner_id')
         return queryset.filter(owner_id=author_id)
+
+
+class Handler404(CommonViewMixin, TemplateView):
+    template_name = '404.html'
+
+    def get(self, request, *args, **kwargs):
+        context = self.get_context_data(**kwargs)
+        return self.render_to_response(context, status=404)
+
+
+class Handler50x(CommonViewMixin, TemplateView):
+    template_name = '50x.html'
+
+    def get(self, request, *args, **kwargs):
+        context = self.get_context_data(**kwargs)
+        return self.render_to_response(context, status=500)

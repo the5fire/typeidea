@@ -11,13 +11,18 @@ from django.views.decorators.cache import cache_page
 from blog.apis import PostViewSet, CategoryViewSet
 from blog.views import (
     IndexView, CategoryView, TagView,
-    PostDetailView, SearchView, AuthorView
+    PostDetailView, SearchView, AuthorView,
+    Handler404, Handler50x
 )
 from blog.rss import LatestPostFeed
 from blog.sitemap import PostSitemap
 from config.views import LinkListView
 from comment.views import CommentView
 from .autocomplete import CategoryAutocomplete, TagAutocomplete
+
+
+handler404 = Handler404.as_view()
+handler500 = Handler50x.as_view()
 
 router = DefaultRouter()
 router.register(r'post', PostViewSet, base_name='api-post')
