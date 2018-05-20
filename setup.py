@@ -35,6 +35,7 @@ setup(
     ],
     scripts=[
         'typeidea/manage.py',
+        'typeidea/typeidea/wsgi.py',
     ],
     entry_points={
         'console_scripts': [

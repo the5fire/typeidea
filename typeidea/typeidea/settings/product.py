@@ -19,12 +19,14 @@ ADMINS = MANAGERS = (
     ('the5fire', 'thefivefire@gmail.com'),  # 你的邮件地址
 )
 
-EMAIL_HOST = ''
-EMAIL_HOST_USER = 'the5fire'
-EMAIL_HOST_PASSWORD = ''
-EMAIL_SUBJECT_PREFIX = ''
-DEFAULT_FROM_EMAIL = ''
-SERVER_EMAIL = ''
+# EMAIL_HOST = ''
+# EMAIL_HOST_USER = 'the5fire'
+# EMAIL_HOST_PASSWORD = ''
+# EMAIL_SUBJECT_PREFIX = ''
+# DEFAULT_FROM_EMAIL = ''
+# SERVER_EMAIL = ''
+
+STATIC_ROOT = '/home/the5fire/venvs/typeidea-env/static_files/'
 
 
 LOGGING = {
