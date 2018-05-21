@@ -17,7 +17,7 @@ from blog.views import (
 from blog.rss import LatestPostFeed
 from blog.sitemap import PostSitemap
 from config.views import LinkListView
-from comment.views import CommentView
+from comment.views import CommentView, VerifyCaptcha
 from .autocomplete import CategoryAutocomplete, TagAutocomplete
 
 
@@ -46,6 +46,7 @@ urlpatterns = [
     url(r'^api/', include(router.urls)),
     url(r'^api/docs/', include_docs_urls(title='typeidea apis')),
     url(r'^captcha/', include('captcha.urls')),
+    url(r'^verify_captcha/', VerifyCaptcha.as_view(), name='verify_captcha'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if settings.DEBUG:
