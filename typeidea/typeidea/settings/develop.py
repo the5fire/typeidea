@@ -20,7 +20,7 @@ DATABASES = {
 }
 INSTALLED_APPS += [
     'debug_toolbar',
-    'raven.contrib.django.raven_compat',
+    # 'raven.contrib.django.raven_compat',
 ]
 
 MIDDLEWARE += [

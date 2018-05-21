@@ -45,6 +45,7 @@ urlpatterns = [
     url(r'^ckeditor/', include('ckeditor_uploader.urls')),
     url(r'^api/', include(router.urls)),
     url(r'^api/docs/', include_docs_urls(title='typeidea apis')),
+    url(r'^captcha/', include('captcha.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if settings.DEBUG:
