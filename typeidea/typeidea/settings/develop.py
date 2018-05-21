@@ -1,4 +1,6 @@
 # flake8: noqa
+import os
+import raven
 
 from .base import *  # NOQA
 
@@ -18,6 +20,7 @@ DATABASES = {
 }
 INSTALLED_APPS += [
     'debug_toolbar',
+    'raven.contrib.django.raven_compat',
 ]
 
 MIDDLEWARE += [
@@ -59,4 +62,10 @@ LOGGING = {
             'propagate': True,
         },
     }
+}
+
+
+RAVEN_CONFIG = {
+    'dsn': 'http://ac72ba920a864100b375f3f626d54835:bd5aae601a234b5ca02a5441a88b7814@127.0.0.1:19000//3',
+    'release': VERSION,  # 默认的配置是从git项目读取最新的commit，我们这里使用已经base中配置的VERSEION。
 }

@@ -17,10 +17,10 @@ setup(
     # ]},
     include_package_data=True,  # 方法二 配合 MANIFEST.in文件
     install_requires=[
-        'django~=1.11',
+        'django~=2.0',
         'gunicorn==19.8.1',
         'supervisor==4.0.0dev0',
-        'xadmin==0.6.1',
+        'xadmin==2.0.1',
         'mysqlclient==1.3.12',
         'django-ckeditor==5.4.0',
         'django-rest-framework==0.1.0',
