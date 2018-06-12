@@ -1,0 +1,70 @@
+<hr/>
+<div class="comment">
+    <form id="comment_form" class="form-group" action="/comment/" method="POST">
+        {% csrf_token %}
+        <input name="target" type="hidden" value="{{ target }}"/>
+        {{ comment_form }}
+        <div id="captcha_section"></div>
+        <input id="verify" type="button" value="写好了!"/>
+        <input id="submit" type="submit" style="display:None" value="写好了!"/>
+    </form>
+
+    <!-- 评论列表 -->
+    <ul class="list-group">
+        {% for comment in comment_list %}
+        <li class="list-group-item">
+            <div class="nickname">
+                <a href="{{ comment.website }}">{{ comment.nickname }}</a> <span>{{ comment.created_time }}</span>
+            </div>
+            <div class="comment-content">
+                {% autoescape off %}
+                {{ comment.content }}
+                {% endautoescape %}
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function(){
+        var $form = $('.form-group');
+        function init_captcha() {
+            $.getJSON("{% url 'verify_captcha' %}", function(data) {
+                $('#captcha_section').html(
+                    '<img src="' + data.image_src +'" id="captcha_id" data-id="'+ data.captcha_id +'"/>' + 
+                    '<input id="captcha"/>'
+                );
+            })
+        }
+        $( document ).on( "click", '#captcha_id', init_captcha);
+
+        $('#verify').on('click', function() {
+            var captcha = $('#captcha').val();
+            if (!captcha) {
+                alert('验证码不能为空');
+                return;
+            }
+            $.ajax({
+                url: "{% url 'verify_captcha' %}",
+                method: 'POST',
+                data: {
+                    'captcha_id': $('#captcha_id').data('id'),
+                    'captcha': captcha,
+                    'csrfmiddlewaretoken': '{{ csrf_token }}',
+                },
+                success: function() {
+                    $('#submit').click();
+                    setTimeout(init_captcha, 500);
+                },
+                error: function(res, data) {
+                    alert(res.responseJSON.msg);
+                    return false;
+                }
+            });
+        });
+
+        init_captcha();
+    });
+</script>

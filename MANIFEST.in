@@ -1,0 +1,3 @@
+include README.md
+recursive-include typeidea *.css *.js *.jpg *.gif *.png *.html *.md
+prune typeidea/typeidea/static_files

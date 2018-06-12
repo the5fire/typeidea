@@ -1,0 +1,4 @@
+Host myserver
+    HostName 127.0.0.1
+    User the5fire
+    Port 11022
