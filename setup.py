@@ -29,6 +29,8 @@ setup(
         'mistune==0.8.3',
         'Pillow==4.3.0',
         'coreapi==2.3.3',
+        'django-redis==4.8.0',
+        'hiredis==0.2.0',
         # debug
         'django-debug-toolbar==1.9.1',
         'django-silk==2.0.0',
