@@ -67,6 +67,10 @@ class SideBar(models.Model):
     def _render_latest(self):
         pass
 
+    @classmethod
+    def get_all(cls):
+        return cls.objects.filter(status=cls.STATUS_SHOW)
+
     def content_html(self):
         """ 通过直接渲染模板 """
         from blog.models import Post  # 避免循环引用
@@ -77,7 +81,7 @@ class SideBar(models.Model):
             result = self.content
         elif self.display_type == self.DISPLAY_LATEST:
             context = {
-                'posts': Post.latest_posts()
+                'posts': Post.latest_posts(with_related=False)
             }
             result = render_to_string('config/blocks/sidebar_posts.html', context)
         elif self.display_type == self.DISPLAY_HOT:
