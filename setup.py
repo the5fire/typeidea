@@ -17,11 +17,11 @@ setup(
     # ]},
     include_package_data=True,  # 方法二 配合 MANIFEST.in文件
     install_requires=[
-        'django~=2.0',
+        'django==2.0.9',
         'gunicorn==19.8.1',
         'supervisor==4.0.0dev0',
         'xadmin==2.0.1',
-        'mysqlclient==1.3.12',
+        'mysqlclient==1.3.13',
         'django-ckeditor==5.4.0',
         'django-rest-framework==0.1.0',
         'django-redis==4.8.0',
@@ -34,6 +34,8 @@ setup(
         # debug
         'django-debug-toolbar==1.9.1',
         'django-silk==2.0.0',
+        'captcha==0.2.4',
+        'raven==6.9.0'
     ],
     scripts=[
         'typeidea/manage.py',

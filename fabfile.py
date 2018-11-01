@@ -10,14 +10,14 @@ from fabric.decorators import task
 
 
 env.roledefs = {
-    'myserver': ['the5fire@127.0.0.1:11022'],
+    'myserver': ['the5fire@132.232.154.61:22'],
 }
 env.PROJECT_NAME = 'typeidea'
 env.SETTINGS_BASE = 'typeidea/typeidea/settings/base.py'
 env.DEPLOY_PATH = '/home/the5fire/venvs/typeidea-env'
 env.VENV_ACTIVATE = os.path.join(env.DEPLOY_PATH, 'bin', 'activate')
 env.PYPI_HOST = '127.0.0.1'
-env.PYPI_INDEX = 'http://127.0.0.1:8080/simple'
+env.PYPI_INDEX = 'http://{}:18080/simple'.format(env.PYPI_HOST)
 env.PROCESS_COUNT = 2
 env.PORT_PREFIX = 909
 
