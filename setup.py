@@ -34,6 +34,7 @@ setup(
         # debug
         'django-debug-toolbar==1.9.1',
         'django-silk==2.0.0',
+        'django-simple-captcha==0.5.9',
         'captcha==0.2.4',
         'raven==6.9.0'
     ],

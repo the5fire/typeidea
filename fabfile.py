@@ -68,7 +68,7 @@ def _ensure_virtualenv():
         return True
 
     if not exists(env.DEPLOY_PATH):
-        run('mkdir -p %s' % env.DEPLOY_PATH)
+        run('mkdir -p %s/tmp' % env.DEPLOY_PATH)
 
     run('python3.6 -m venv %s' % env.DEPLOY_PATH)
 
