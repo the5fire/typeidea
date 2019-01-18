@@ -10,7 +10,7 @@ from fabric.decorators import task
 
 
 env.roledefs = {
-    'myserver': ['the5fire@132.232.154.61:22'],
+    'myserver': ['the5fire@<ip>:22'],
 }
 env.PROJECT_NAME = 'typeidea'
 env.SETTINGS_BASE = 'typeidea/typeidea/settings/base.py'
