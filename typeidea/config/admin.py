@@ -1,28 +1,56 @@
-# -*- coding: utf-8 -*-
-from __future__ import unicode_literals
-
 from django.contrib import admin
+from django.utils.html import format_html
+from django.urls import reverse
 
 from .models import Link, SideBar
-from typeidea.custom_site import custom_site
-from typeidea.base_admin import BaseOwnerAdmin
+from config.adminform import ConfigLinkAdminForm, ConfigSideBarAdminForm
+from typeidea.custom_admin import BaseOwnerAdmin
+from typeidea.custom_site import config_admin_site
 
 
-@admin.register(Link, site=custom_site)
+@admin.register(Link, site=config_admin_site)
 class LinkAdmin(BaseOwnerAdmin):
-    list_display = ('title', 'href', 'status', 'weight', 'created_time')
-    fields = ('title', 'href', 'status', 'weight')
+    # 展示页面定制
+    list_display = [
+        'title', 'href', 'weight', 'create_time', 'status_show', 'goahead_link'
+    ]
+    list_filter = ['title', 'create_time', 'weight']
+    search_fields = ['title', 'weight']
 
-    def save_model(self, request, obj, form, change):
-        obj.owner = request.user
-        return super(LinkAdmin, self).save_model(request, obj, form, change)
+    date_hierarchy = 'create_time'
+
+    # 编辑页面定制
+    form = ConfigLinkAdminForm
+    save_on_top = False
+    save_on_bottom = True
+    fields = (
+        'title', 'weight', 'status', 'href'
+    )
+
+    def goahead_link(self, obj):
+        return format_html(
+            '<a href={}>编辑</a>',
+            reverse('config_admin:config_link_change', args=(obj.id,))
+        )
+    goahead_link.short_description = '链接'
 
 
-@admin.register(SideBar, site=custom_site)
+@admin.register(SideBar, site=config_admin_site)
 class SideBarAdmin(BaseOwnerAdmin):
-    list_display = ('title', 'display_type', 'content', 'created_time')
-    fields = ('title', 'display_type', 'content')
+    # 展示页面定制
+    list_display = [
+        'title', 'display_type', 'content', 'created_time', 'status_show'
+    ]
+    list_filter = ['title', 'created_time', 'display_type']
+    search_fields = ['title', 'display_type', 'status']
 
-    def save_model(self, request, obj, form, change):
-        obj.owner = request.user
-        return super(SideBarAdmin, self).save_model(request, obj, form, change)
+    date_hierarchy = 'created_time'
+
+    # 定义编辑页面
+    form = ConfigSideBarAdminForm
+    save_on_top = False
+    save_on_bottom = True
+
+    fields = (
+        'title', 'display_type', 'content', 'status'
+    )
