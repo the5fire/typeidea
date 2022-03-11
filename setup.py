@@ -27,7 +27,7 @@ setup(
         'django-redis==4.8.0',
         'django-autocomplete-light==3.2.10',
         'mistune==0.8.3',
-        'Pillow==4.3.0',
+        'Pillow==9.0.1',
         'coreapi==2.3.3',
         'django-redis==4.8.0',
         'hiredis==0.2.0',
